@@ -8,3 +8,6 @@ set so=5
 " Windows specific shenanigans to stop the doom bell ringing.
 set visualbell
 set t_vb=
+" Absolute and relative line numbering.
+set nu
+set relativenumber
