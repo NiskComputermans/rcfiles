@@ -1,0 +1,30 @@
+[user]
+				name = Kirk Stephenson
+				email = nisk.is.afk@gmail.com
+				username = nisk
+[core]
+				editor = vim
+				excludesfile = ./.gitignore
+[web]
+				browser = chromium-browser
+[color]
+				ui = auto
+[color "branch"]
+				current = yellow bold
+				local = green bold
+				remote = cyan bold
+[color "diff"]
+				meta = yellow bold
+				frag = megenta bold
+				old = red bold
+				new = green bold
+				whitespace = red reverse
+[color "status"]
+				added = green bold
+				changed = yellow bold
+				untracked = red bold
+[diff]
+				tool = vimdiff
+[github]
+				user = nisk
+				token = <add token here>
