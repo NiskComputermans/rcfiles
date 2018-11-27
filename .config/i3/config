@@ -1,0 +1,134 @@
+set $mod Mod1
+
+# Font for window titles.
+font pango:monospace 8
+
+# Use Mouse+$mod to drag floating windows to their wanted position.
+floating_modifier $mod
+
+# Start a terminal.
+bindsym $mod+Return exec i3-sensible-terminal
+
+# Kill focused window.
+bindsym $mod+Shift+q kill
+
+# Start dmenu (a program launcher)
+bindsym $mod+d exec dmenu_run
+
+# Vim controls for focus change,
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+# and for moving the focused window.
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# Window splitting.
+bindsym $mod+h split h
+bindsym $mod+v split v
+
+# Enter fullscreen mode for the focused container.
+bindsym $mod+f fullscreen toggle
+
+# Change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Toggle tiling / floating.
+bindsym $mod+Shift+space floating toggle
+
+# Change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+
+# lock all the things
+bindsym $mod+Pause exec i3lock
+
+# media keys
+bindsym $mod+plus exec amixer -q set Master 2dB+ unmute
+bindsym $mod+minus exec amixer -q set Master 2dB- unmute
+bindsym $mod+0 exec playerctl next
+bindsym $mod+9 exec playerctl previous
+
+# give scratchpad
+#for_window [instance="scratchpad"] move window to scratchpad, scratchpad show
+#bindsym $mod+minus scratchpad show
+#bindsym $mod+Shift+minus exec --no-startup-id i3-sensible-terminal
+
+# workspace placement
+workspace 1 output HDMI1
+workspace 2 output VGA1
+workspace 3 output HDMI1
+workspace 4 output HDMI1
+
+# window assignments
+assign [class="^Firefox$"] 2
+assign [class="^Gnome-terminal$"] 1
+assign [class="^Rhythmbox$"] 3
+assign [class="^spotify$"] 3
+assign [class="^Remmina$"] 4
+
+# initial execution on startup
+#exec "bash /home/$(whoami)/.config/i3/xrandr.conf" # Useful if using odd monitor configurations.
+exec firefox
+exec i3-sensible-terminal
+exec i3-sensible-terminal
+exec remmina
+#exec spotify # Spotify doesn't seem to like being exec'd on startup.
+exec rhythmbox
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+        status_command i3status
+        tray_output primary
+}
