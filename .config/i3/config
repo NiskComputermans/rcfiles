@@ -21,11 +21,21 @@ bindsym $mod+k focus down
 bindsym $mod+l focus up
 bindsym $mod+semicolon focus right
 
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
 # and for moving the focused window.
 bindsym $mod+Shift+j move left
 bindsym $mod+Shift+k move down
 bindsym $mod+Shift+l move up
 bindsym $mod+Shift+semicolon move right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
 
 # Window splitting.
 bindsym $mod+h split h
@@ -91,7 +101,8 @@ assign [class="^spotify$"] 3
 assign [class="^Remmina$"] 4
 
 # initial execution on startup
-#exec "bash /home/$(whoami)/.config/i3/xrandr.conf" # Useful if using odd monitor configurations.
+exec "bash /home/operations/.config/i3/xrandr.conf"
+exec "echo $(whoami) > i3_whoami.txt"
 exec firefox
 exec i3-sensible-terminal
 exec i3-sensible-terminal
@@ -132,3 +143,6 @@ bar {
         status_command i3status
         tray_output primary
 }
+
+# Remove titles from windows to reclaim more screen space.
+new_window pixel 2
